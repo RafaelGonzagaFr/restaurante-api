@@ -19,14 +19,16 @@ public class Order {
 
     private String description;
 
-    private String table;
+    @ManyToOne
+    @JoinColumn(name = "restaurant_table_id")
+    private RestaurantTable restaurantTable;
 
     private String status;
 
     public Order(OrderRequestDTO orderRequestDTO){
         this.id = orderRequestDTO.id();
         this.description = orderRequestDTO.description();
-        this.table = orderRequestDTO.description();
+        this.restaurantTable = orderRequestDTO.restaurantTable();
         this.status = orderRequestDTO.status();
     }
 }

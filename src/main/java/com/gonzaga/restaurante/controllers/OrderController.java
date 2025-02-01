@@ -25,10 +25,10 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<Order> createNewOrder(@RequestBody OrderRequestDTO orderRequestDTO){
+    public ResponseEntity<OrderRequestDTO> newOrder(@RequestBody OrderRequestDTO orderRequestDTO){
         Order order = new Order(orderRequestDTO);
         orderRepository.save(order);
-        return ResponseEntity.ok(order);
+        return ResponseEntity.ok(orderRequestDTO);
     }
 
     @PutMapping("{id}")
@@ -37,7 +37,7 @@ public class OrderController {
         if(orderById.isPresent()){
             Order order = orderById.get();
             order.setDescription(orderRequestDTO.description());
-            order.setTable(orderRequestDTO.table());
+            order.setRestaurantTable(orderRequestDTO.restaurantTable());
             order.setStatus(orderRequestDTO.status());
             orderRepository.save(order);
             return ResponseEntity.ok("Modify");
