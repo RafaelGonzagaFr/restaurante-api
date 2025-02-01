@@ -21,6 +21,7 @@ public class Waiter {
     private String password;
 
     public Waiter(WaiterRequestDTO waiterRequestDTO){
+        this.id = waiterRequestDTO.id();
         this.username = waiterRequestDTO.username();
         this.password = waiterRequestDTO.password();
     }
