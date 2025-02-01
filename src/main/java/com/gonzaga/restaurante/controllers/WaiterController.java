@@ -23,9 +23,9 @@ public class WaiterController {
     }
 
     @PostMapping
-    public ResponseEntity<Waiter> createNewWaiter(@RequestBody WaiterRequestDTO waiterRequestDTO){
+    public ResponseEntity<WaiterRequestDTO> newWaiter(@RequestBody WaiterRequestDTO waiterRequestDTO){
         Waiter waiter = new Waiter(waiterRequestDTO);
         waiterRepository.save(waiter);
-        return ResponseEntity.ok(waiter);
+        return ResponseEntity.ok(waiterRequestDTO);
     }
 }
