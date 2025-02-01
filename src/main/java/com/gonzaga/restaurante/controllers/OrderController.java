@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/order")
@@ -28,6 +29,20 @@ public class OrderController {
         Order order = new Order(orderRequestDTO);
         orderRepository.save(order);
         return ResponseEntity.ok(order);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<String> updateOrder(@PathVariable Long id, @RequestBody OrderRequestDTO orderRequestDTO){
+        Optional<Order> orderById = orderRepository.findById(id);
+        if(orderById.isPresent()){
+            Order order = orderById.get();
+            order.setDescription(orderRequestDTO.description());
+            order.setTable(orderRequestDTO.table());
+            order.setStatus(orderRequestDTO.status());
+            orderRepository.save(order);
+            return ResponseEntity.ok("Modify");
+        }
+        return ResponseEntity.ok("Not found");
     }
 
 }

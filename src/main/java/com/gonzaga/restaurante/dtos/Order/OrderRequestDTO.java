@@ -1,3 +1,3 @@
 package com.gonzaga.restaurante.dtos.Order;
 
-public record OrderRequestDTO(String description, String table, String status) { }
+public record OrderRequestDTO(Long id, String description, String table, String status) { }

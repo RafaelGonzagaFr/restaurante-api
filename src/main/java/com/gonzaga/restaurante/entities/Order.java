@@ -24,6 +24,7 @@ public class Order {
     private String status;
 
     public Order(OrderRequestDTO orderRequestDTO){
+        this.id = orderRequestDTO.id();
         this.description = orderRequestDTO.description();
         this.table = orderRequestDTO.description();
         this.status = orderRequestDTO.status();
