@@ -24,6 +24,15 @@ public class OrderController {
         return ResponseEntity.ok(listOfOrders);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Order>> getOrderById(@PathVariable Long id){
+        Optional<Order> order = orderRepository.findById(id);
+        if(order.isPresent()){
+            return ResponseEntity.ok(order);
+        }
+        return ResponseEntity.ok(order);
+    }
+
     @PostMapping
     public ResponseEntity<OrderRequestDTO> newOrder(@RequestBody OrderRequestDTO orderRequestDTO){
         Order order = new Order(orderRequestDTO);
