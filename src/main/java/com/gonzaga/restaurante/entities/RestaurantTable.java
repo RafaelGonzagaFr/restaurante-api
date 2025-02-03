@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class RestaurantTable {
     @Id
@@ -25,7 +24,9 @@ public class RestaurantTable {
     @OneToMany(mappedBy = "restaurantTable")
     private List<Order> listOfOrders;
 
-    private Double toPay;
+    private Double toPay; //Isso daqui possivelmente pode sumir depois, pois cada pedido pode ter um valor total associado
+
+    public RestaurantTable(){}
 
     public RestaurantTable(RestaurantTableRequestDTO restaurantTableRequestDTO){
         this.number = restaurantTableRequestDTO.number();
@@ -37,4 +38,31 @@ public class RestaurantTable {
         this.toPay = restaurantTableRequestDTO.toPay();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public Long getNumber() {
+        return number;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
+    }
+
+    public List<Order> getListOfOrders() {
+        return listOfOrders;
+    }
+
+    public void setListOfOrders(List<Order> listOfOrders) {
+        this.listOfOrders = listOfOrders;
+    }
+
+    public Double getToPay() {
+        return toPay;
+    }
+
+    public void setToPay(Double toPay) {
+        this.toPay = toPay;
+    }
 }
