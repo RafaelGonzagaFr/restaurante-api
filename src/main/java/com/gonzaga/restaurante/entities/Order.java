@@ -10,7 +10,6 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Order {
     @Id
@@ -25,10 +24,36 @@ public class Order {
 
     private String status;
 
+    public Order(){}
+
     public Order(OrderRequestDTO orderRequestDTO){
         this.id = orderRequestDTO.id();
         this.description = orderRequestDTO.description();
         this.restaurantTable = orderRequestDTO.restaurantTable();
         this.status = orderRequestDTO.status();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public RestaurantTable getRestaurantTable() {
+        return restaurantTable;
+    }
+
+    public void setRestaurantTable(RestaurantTable restaurantTable) {
+        this.restaurantTable = restaurantTable;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -10,7 +10,6 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Kitchen {
     @Id
@@ -21,8 +20,26 @@ public class Kitchen {
 
     private String password;
 
+    public Kitchen(){}
+
     public Kitchen(KitchenRequestDTO KitchenRequestDTO){
         this.username = KitchenRequestDTO.username();
         this.password = KitchenRequestDTO.password();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
