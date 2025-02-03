@@ -25,6 +25,15 @@ public class RestaurantTableController {
         return ResponseEntity.ok(listOfRestaurantTables);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<RestaurantTable>> getRestauranttableById(@PathVariable Long id){
+        Optional<RestaurantTable> restaurantTable = restaurantTableRepository.findById(id);
+        if(restaurantTable.isPresent()){
+            return  ResponseEntity.ok(restaurantTable);
+        }
+        return ResponseEntity.ok(restaurantTable);
+    }
+
     @PostMapping
     public ResponseEntity<RestaurantTableRequestDTO> newTable(@RequestBody RestaurantTableRequestDTO restaurantTableRequestDTO){
         RestaurantTable restaurantTable = new RestaurantTable(restaurantTableRequestDTO);
